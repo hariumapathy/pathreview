@@ -41,10 +41,9 @@ Part 4:
 
 ## Week 8 — Reproduction & solution planning
 
-**Reproduction commit link:** [link to commit documenting the reproduced issue]
+**Reproduction commit link:** https://github.com/hariumapathy/pathreview/commit/42450e1bef452bb7ec0bbe9164a36aa168fcd022
 
 **Reproduction summary:**
-[1–2 sentences: How did you reproduce the issue? What did you observe?]
 
 I reproduced the issue by running the application and then making a API request to the GET /health endpoint, observing both the API response and the terminal output.
 
@@ -88,7 +87,7 @@ To further verify that the Postgres DB is up, we can see the healthy container b
 Therefore, it is confirmed that the response from the GET /health endpoint is incorrectly reporting the uptime status of the Postgres DB service.
 
 
-**PLAN.md link:** [link to PLAN.md in your fork]
+**PLAN.md link:** https://github.com/hariumapathy/pathreview/blob/fix/154-db-probe-raw-sql-error/PLAN.md
 
 
 **Blockers or open questions:**

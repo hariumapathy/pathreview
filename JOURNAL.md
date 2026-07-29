@@ -38,3 +38,58 @@ Part 4:
 - I have seem the issue comments and the ledger, and I am okay with the number of people working on it.
 - I am confident I can implement, test, and submit a PR before the Week 9 deadline.
 - There are no open blockers.
+
+## Week 8 — Reproduction & solution planning
+
+**Reproduction commit link:** [link to commit documenting the reproduced issue]
+
+**Reproduction summary:**
+[1–2 sentences: How did you reproduce the issue? What did you observe?]
+
+I reproduced the issue by running the application and then making a API request to the GET /health endpoint, observing both the API response and the terminal output.
+
+See below for the full, detailed reproduction steps.
+
+**Detailed Reproduction Steps:**
+1. Get environment setup
+	1. `docker compose -d`
+	2. `make setup`
+	3. `make run`
+2. Looked at API docs: http://localhost:8000/docs
+3. Used Postman to make a GET request to http://localhost:8000/health
+	1. Got the following response back:
+```
+{
+    "detail": {
+        "status": "unhealthy",
+        "dependencies": {
+            "postgres": "unhealthy",
+            "redis": "unhealthy",
+            "vector_db": "healthy"
+        },
+        "safety_events_last_hour": 0,
+        "timestamp": "2026-07-24T01:14:11.860279"
+    }
+}
+```
+
+- Note that `"postgres": "unhealthy"` appears in the response, indicating that the service is down.
+4. In my VS Code terminal (Git Bash), I saw the following appear:
+```
+2026-07-23 21:14:11 [error    ] postgres_health_check_failed   error="Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')" request_id=09306c44-3308-41e8-9039-d977de26b95b
+2026-07-23 21:14:12 [error    ] redis_health_check_failed      error="'Settings' object has no attribute 'redis_host'" request_id=09306c44-3308-41e8-9039-d977de26b95b
+2026-07-23 21:14:12 [debug    ] vector_db_health_check_passed  request_id=09306c44-3308-41e8-9039-d977de26b95b
+INFO:     127.0.0.1:62321 - "GET /health HTTP/1.1" 503 Service Unavailable
+```
+- Note that the error `Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')` is the encountered failure message that is reported in the original GitHub issue. This indicates that the bug/issue has been reproduced.
+
+To further verify that the Postgres DB is up, we can see the healthy container by running `docker compose ps`. We can also run `docker exec -it pathreview-db-1 pg_isready`, which results in the output: `/var/run/postgresql:5432 - accepting connections`.
+
+Therefore, it is confirmed that the response from the GET /health endpoint is incorrectly reporting the uptime status of the Postgres DB service.
+
+
+**PLAN.md link:** [link to PLAN.md in your fork]
+
+
+**Blockers or open questions:**
+Apart from the questions raised in PLAN.md, I have no further blockers.

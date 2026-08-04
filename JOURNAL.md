@@ -92,3 +92,39 @@ Therefore, it is confirmed that the response from the GET /health endpoint is in
 
 **Blockers or open questions:**
 Apart from the questions raised in PLAN.md, I have no further blockers.
+
+## Week 9 — Solution building & PR submission
+
+### Check-in 1 (mid-week)
+
+**Current progress:**
+[What have you implemented so far? Which sub-tasks from PLAN.md are done?]
+
+So I far I have implemented the fixes in `api/routes/health.py`, importing the `text()` wrapper method and nested it within the `db.execute()` method call. To commit my changes, I also had to add type hints to the `health_check` method, and add a comment `# noqa: B008` to the end of the method signature. This is done to bypass the ruff issue of calling a method within a default. However, the use of the `Depends()` method is a FastAPI convention, and not an improper coding practice.
+
+Therefore, sub-tasks 1 and 2 are done from PLAN.md.
+
+**Next steps:**
+The next steps will be to write unit tests and ensure that no further issues or warnings are introduced into the codebase because of my changes.
+
+**Blockers:**
+Understanding how to use Mock and when to use it for unit tests is a new concept for me. With the use of online resources, Claude, and reading through existing unit tests, I am getting a better idea of how to write tests myself.
+
+---
+
+### Check-in 2 (end of week)
+
+**PR link:** [link to your submitted pull request]
+
+**Branch:** fix/154-db-probe-raw-sql-error
+
+**What you built:**
+My fix addresses issue 154, adding the `text()` wrapper method in `api/routes/health.py` wherever a raw SQL string was passed to the `db.execute()` method. This fix prevents false negatives, which is when the health endpoint reports the Postgres service as down even though it actually is up.
+
+**Tests added or updated:**
+I created a new unit test file named `test_health.py`, with 7 tests that are relevant to the API health endpoint. They check various paths, such as when the Postgres service is down or up and whether the endpoint correctly reports that.
+
+**Self-review confirmation:** [ x ] make check passes  [ x ] make test-unit passes
+- Note: There were existing issues in make check and make test-unit that my changes did not worsen
+
+**Draft PR feedback received from:** "none"

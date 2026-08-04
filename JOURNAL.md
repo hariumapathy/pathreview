@@ -114,7 +114,7 @@ Understanding how to use Mock and when to use it for unit tests is a new concept
 
 ### Check-in 2 (end of week)
 
-**PR link:** [link to your submitted pull request]
+**PR link:** https://github.com/ascherj/pathreview/pull/808
 
 **Branch:** fix/154-db-probe-raw-sql-error
 

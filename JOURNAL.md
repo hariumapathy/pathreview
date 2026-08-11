@@ -128,3 +128,43 @@ I created a new unit test file named `test_health.py`, with 7 tests that are rel
 - Note: There were existing issues in make check and make test-unit that my changes did not worsen
 
 **Draft PR feedback received from:** "none"
+
+## Week 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [ x ] No — still awaiting review
+
+**Summary of feedback:**
+No review came in.
+
+**How you responded:**
+N/A
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+Starting off in a new codebase and understanding the flow of API routes or where certain DB settings where, and how they interacted, took some time to read and understand. Even though my fix was local to the `api/routes/health.py` file, I still needed a grasp on the codebase, especially the API routes, to understand how to test the GET health endpoint. Reading unit tests also required some familiarity with the style used (such as when and what to mock). Therefore, getting situated in a new codebase, before even writing a fix, is something that I was not used to and took more time than I expected. However, the use of AI tools helped served as a partner of sorts for understanding the important modules and design choices.
+
+**What did you learn about working in a large codebase?**
+[What's different about contributing to someone else's production code
+vs. building your own project?]
+
+When I am building my own project, I often make my own design choices and conventions, whether that is where the logic lives, file structure, documentation, or method naming. As a result, I tend to approach personal projects in a slightly less structured manner. However, contributing to someone else's production code requires an understanding of existing conventions and the ability to follow those. Whether that is docstrings, how unit tests are written, or adhering to the existing linter and formatter, following existing conventions is one of the key takeaways for me as I worked towards this PR.
+
+**How did AI tools help — and where did they fall short?**
+[Where was AI assistance most useful this module? Where did you need
+to go beyond what AI could give you?]
+AI tools and assistance was very useful at getting up to speed on the codebase and summarizing/explaining existing files and methods. Instead of digging through documentation and reading a lot of adjacent files line by line, AI tools helped me to construct a mental mapping of the codebase. This would have been a much more manual process if done without the help of AI.
+
+AI tools fell short when following existing standards; an initial attempt to produce code would produce well-written code. However, such code might not adhere to the codebase specifications. This required further prompting and/or rewriting from my end.
+
+**What would you do differently if you started over?**
+[Issue selection, planning, implementation, or process — anything
+you'd change?]
+If I started over, I would likely try and understand unit testing before diving into a fix. Being able to write unit test(s) before implementing a fix would ensure that the fix is robust. Adding unit tests after implementation can cause rushed testing in the real world, and is a habit that I would like to avoid moving forward.
+
+**What are you most proud of from this module?**
+I am proud of making a codebase contribution for the first time, since up until this point most of my Git and Github usage was for personal, small group, or school projects.
